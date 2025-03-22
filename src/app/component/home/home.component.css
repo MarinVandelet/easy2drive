@@ -1,0 +1,28 @@
+.carousel-item {
+    height: 100vh;
+    min-height: 500px;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.carousel-caption {
+    bottom: 50%;
+    transform: translateY(50%);
+}
+
+section {
+    padding-top: 100px;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 2s forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
