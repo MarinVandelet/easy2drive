@@ -1,0 +1,45 @@
+<!-- connexion.component.html -->
+
+<!-- Arrière-plan -->
+<div style="background-image: url('connexionbg.jpg'); background-size: cover; background-position: center; height: 100vh; display: flex; justify-content: center; align-items: center;">
+
+    <!-- Container Bootstrap -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-12">
+          <div class="card shadow-lg rounded-lg border-0">
+            <div class="card-body p-5">
+              <h4 class="card-title text-center mb-4">Connexion à votre compte</h4>
+  
+              <!-- Formulaire Angular -->
+              <form (ngSubmit)="login()">
+                <div class="mb-4">
+                  <label for="email" class="form-label">Adresse e-mail</label>
+                  <input type="email" class="form-control form-control-lg" id="email" [(ngModel)]="email" name="email" placeholder="Entrez votre adresse e-mail" required>
+                </div>
+  
+                <div class="mb-4">
+                  <label for="password" class="form-label">Mot de passe</label>
+                  <input type="password" class="form-control form-control-lg" id="password" [(ngModel)]="password" name="password" placeholder="Entrez votre mot de passe" required>
+                </div>
+  
+                <div class="d-flex justify-content-between align-items-center">
+                  <button type="submit" class="btn btn-primary btn-lg w-100">Se connecter</button>
+                </div>
+                <div class="text-center mt-3">
+                    <span>Pas encore de compte ?</span>
+                    <a routerLink="/inscription" class="text-decoration-none ms-1">Créer un compte</a>
+                  </div>                  
+                <!-- Message d'erreur -->
+                <div *ngIf="errorMessage" class="text-danger text-center mt-2">
+                  {{ errorMessage }}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  

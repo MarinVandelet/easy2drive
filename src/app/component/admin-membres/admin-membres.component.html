@@ -1,0 +1,116 @@
+<div class="container py-4 fade-in">
+    <h2 class="mb-4 text-center">Gestion des membres</h2>
+  
+    <!-- Formulaire de création -->
+    <form (ngSubmit)="createMembre()" class="row g-3 mb-4 fade-in">
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Prénom" [(ngModel)]="newUser.prenom" name="prenom" required>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="newUser.nom" name="nom" required>
+      </div>
+      <div class="col-md-3">
+        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="newUser.email" name="email" required>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Mot de passe" [(ngModel)]="newUser.password" name="password" required>
+      </div>
+      <div class="col-md-3">
+        <input type="date" class="form-control" [(ngModel)]="newUser.date_naissance" name="date_naissance" required>
+      </div>
+      <div class="col-md-2">
+        <select class="form-select" [(ngModel)]="newUser.role" name="role" required>
+          <option value="eleve">Élève</option>
+          <option value="moniteur">Moniteur</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-success w-100 btn-hover">Ajouter</button>
+      </div>
+    </form>
+  
+    <!-- Recherche et filtre rôle -->
+    <div class="row mb-3 fade-in">
+      <div class="col-md-8">
+        <input type="text" class="form-control" placeholder="Recherche par nom, email..." [(ngModel)]="searchTerm" (ngModelChange)="applyFilter()">
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" [(ngModel)]="selectedRole" (change)="applyFilter()">
+          <option value="">Tous les rôles</option>
+          <option value="eleve">Élève</option>
+          <option value="moniteur">Moniteur</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Tableau -->
+    <div class="table-responsive fade-in">
+      <table class="table table-bordered table-striped align-middle text-center">
+        <thead class="table-primary">
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Date de naissance</th>
+            <th>Rôle</th>
+            <th>Date d'inscription</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of filteredUsers" class="fade-in">
+            <td>{{ user.nom }}</td>
+            <td>{{ user.prenom }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.date_naissance }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.date_inscription | date:'short' }}</td>
+            <td>
+              <button class="btn btn-sm btn-primary me-2 btn-hover" (click)="openEditModal(user)">Edit</button>
+              <button class="btn btn-sm btn-danger btn-hover" (click)="deleteUser(user.id)">🗑️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- MODAL d'édition -->
+    <div *ngIf="editingUser" class="modal fade show d-block fade-in" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+      <div class="modal-dialog">
+        <div class="modal-content slide-in">
+          <div class="modal-header">
+            <h5 class="modal-title">Modifier l'utilisateur</h5>
+            <button type="button" class="btn-close" (click)="closeEditModal()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <input type="text" class="form-control" [(ngModel)]="editingUser.prenom" placeholder="Prénom">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" [(ngModel)]="editingUser.nom" placeholder="Nom">
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" [(ngModel)]="editingUser.email" placeholder="Email">
+            </div>
+            <div class="mb-3">
+              <input type="date" class="form-control" [(ngModel)]="editingUser.date_naissance">
+            </div>
+            <div class="mb-3">
+              <select class="form-select" [(ngModel)]="editingUser.role">
+                <option value="eleve">Élève</option>
+                <option value="moniteur">Moniteur</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Annuler</button>
+            <button type="button" class="btn btn-primary" (click)="updateUser()">Enregistrer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,137 @@
+<div class="container-entrainement">
+
+  <h2 class="main-title">📘 Gestion des examens de code</h2>
+
+  <!-- ÉLIGIBILITÉ -->
+  <section class="bloc-section">
+    <h3 class="section-title">📊 Statut d'éligibilité</h3>
+    <p>Moyenne actuelle : <strong>{{ moyenne.toFixed(2) }}/40</strong></p>
+
+    <button (click)="ouvrirFormulaire()" [disabled]="!peutReserver" class="btn btn-primary">
+      Réserver une session
+    </button>
+
+    <span *ngIf="!peutReserver" class="text-danger">Moyenne minimale requise : 32</span>
+    <span *ngIf="showConfirmation" class="confirmation">Réservation confirmée</span>
+  </section>
+
+  <!-- À VENIR -->
+  <section class="bloc-section">
+    <h3 class="section-title">⏳ Examens à venir</h3>
+    <div *ngIf="examensAvenir.length === 0">Aucune réservation en cours.</div>
+
+    <div *ngFor="let exam of examensAvenir" class="result-card">
+      <div class="infos">
+        <p><strong>Date :</strong> {{ exam.date_passage | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Centre :</strong> {{ exam.centre }}</p>
+        <p><strong>Créneau :</strong> {{ exam.creneau }}</p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-outline" (click)="ouvrirDetailAvenir(exam)">Détails</button>
+        <button class="btn btn-danger" (click)="supprimerReservation(exam.id)">Annuler</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASSÉS -->
+  <section class="bloc-section">
+    <h3 class="section-title">✅ Examens passés</h3>
+    <div *ngIf="examensPasses.length === 0">Aucun examen passé.</div>
+
+    <div *ngFor="let exam of examensPasses" class="result-card">
+      <div class="infos">
+        <p><strong>Date :</strong> {{ (exam.date || exam.date_passage) | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Score :</strong> {{ exam.score }}/40</p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-outline" (click)="ouvrirDetailPasse(exam)">Détails</button>
+        <button class="btn btn-primary" (click)="ouvrirAvis()">Donner un avis</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL RÉSERVATION -->
+  <div *ngIf="formVisible" class="modal-backdrop">
+    <div class="modal-content-entrainement">
+      <div class="modal-header">
+        <div class="modal-title">Réserver une session</div>
+        <button class="btn-close" (click)="fermerFormulaire()">×</button>
+      </div>
+      <div class="modal-body">
+        <label>Date :</label>
+        <input type="date" [(ngModel)]="formData.date_passage" />
+
+        <label>Créneau :</label>
+        <select [(ngModel)]="formData.creneau">
+          <option *ngFor="let c of creneaux" [value]="c">{{ c }}</option>
+        </select>
+
+        <label>Centre :</label>
+        <input type="text" [(ngModel)]="formData.centre" />
+
+        <div class="popup-actions">
+          <button class="btn btn-success" (click)="validerReservation()">Valider</button>
+          <button class="btn btn-danger" (click)="fermerFormulaire()">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL AVIS -->
+  <div *ngIf="popupAvisVisible" class="modal-backdrop">
+    <div class="modal-content-entrainement">
+      <div class="modal-header">
+        <div class="modal-title">Laisser un avis</div>
+        <button class="btn-close" (click)="fermerAvis()">×</button>
+      </div>
+      <div class="modal-body">
+        <label>Note :</label>
+        <div class="stars">
+          <span *ngFor="let star of [1,2,3,4,5]" 
+                (click)="setStars(star)" 
+                [class.filled]="star <= selectedStars">
+            ★
+          </span>
+        </div>
+
+        <label>Commentaire :</label>
+        <textarea [(ngModel)]="avisCommentaire" rows="3" placeholder="Votre retour..."></textarea>
+
+        <div class="popup-actions">
+          <button class="btn btn-success" (click)="envoyerAvis()">Envoyer</button>
+          <button class="btn btn-danger" (click)="fermerAvis()">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DÉTAIL AVENIR -->
+  <div *ngIf="detailAvenir" class="modal-backdrop">
+    <div class="modal-content-entrainement">
+      <div class="modal-header">
+        <div class="modal-title">Détail de la session à venir</div>
+        <button class="btn-close" (click)="fermerDetailAvenir()">×</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Date :</strong> {{ detailAvenir.date_passage | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Centre :</strong> {{ detailAvenir.centre }}</p>
+        <p><strong>Créneau :</strong> {{ detailAvenir.creneau }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DÉTAIL PASSÉ -->
+  <div *ngIf="detailPasse" class="modal-backdrop">
+    <div class="modal-content-entrainement">
+      <div class="modal-header">
+        <div class="modal-title">Détail de l'examen passé</div>
+        <button class="btn-close" (click)="fermerDetailPasse()">×</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Date :</strong> {{ (detailPasse.date || detailPasse.date_passage) | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Score :</strong> {{ detailPasse.score }}/40</p>
+      </div>
+    </div>
+  </div>
+
+</div>

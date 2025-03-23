@@ -1,0 +1,101 @@
+<div class="container-entrainement">
+  <h2 class="main-title">📘 Espace Code - Résultats</h2>
+
+  <!-- Entraînements -->
+  <section class="bloc-section fade-in">
+    <h3 class="section-title">📝 Vos derniers entraînements</h3>
+    <div *ngIf="derniersTests.length === 0" class="alert alert-info">Aucun entraînement enregistré.</div>
+    <div *ngFor="let test of derniersTests" class="result-card">
+      <div class="infos">
+        <span class="score">
+          <strong [ngClass]="getScoreClass(test.score)">{{ test.score }}</strong> / 40
+        </span>
+        <span class="date">{{ test.date_passage | date:'dd/MM/yyyy' }}</span>
+      </div>
+      <button class="btn btn-sm btn-outline-primary" (click)="openModal(test, 'entrainement')">Détails</button>
+    </div>
+  </section>
+
+  <!-- Examens blancs -->
+  <section class="bloc-section fade-in">
+    <h3 class="section-title">📑 Vos examens blancs</h3>
+    <div *ngIf="examensBlancs.length === 0" class="alert alert-info">Aucun examen blanc disponible.</div>
+    <div *ngFor="let exam of examensBlancs" class="result-card">
+      <div class="infos">
+        <span class="score">
+          <strong [ngClass]="getScoreClass(exam.score)">{{ exam.score }}</strong> / 40
+        </span>
+        <span class="date">{{ exam.date_passage | date:'dd/MM/yyyy' }}</span>
+      </div>
+      <button class="btn btn-sm btn-outline-primary" (click)="openModal(exam, 'examen')">Détails</button>
+    </div>
+  </section>
+
+  <!-- Moyennes -->
+  <section class="bloc-section fade-in" *ngIf="derniersTests.length || examensBlancs.length">
+    <h3 class="section-title">📊 Statistiques (moyennes)</h3>
+    <div class="moyennes-container">
+      <div class="moyenne-box">
+        <p>Entraînements</p>
+        <div class="moyenne-bar">
+          <div class="moyenne-fill entrainement" [style.width.%]="(moyenneTest / 40) * 100">
+            {{ moyenneTest }}/40
+          </div>
+        </div>
+      </div>
+      <div class="moyenne-box">
+        <p>Examens blancs</p>
+        <div class="moyenne-bar">
+          <div class="moyenne-fill examen" [style.width.%]="(moyenneExamen / 40) * 100">
+            {{ moyenneExamen }}/40
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRAPHIQUE SVG -->
+  <section class="bloc-section fade-in" *ngIf="graphData.length > 0">
+    <h3 class="section-title">📈 Évolution des scores</h3>
+    <div class="chart-wrapper">
+      <svg [attr.viewBox]="'0 0 ' + width + ' ' + height">
+        <polyline
+          [attr.points]="points"
+          class="chart-line"
+        />
+        <circle
+          *ngFor="let point of graphData; let i = index"
+          [attr.cx]="i * stepX"
+          [attr.cy]="height - (point.score * height / 40)"
+          r="4"
+          class="dot"
+          (mouseenter)="showTooltip(point, $event)"
+          (mouseleave)="hideTooltip()"
+        />
+      </svg>
+      <div class="tooltip" *ngIf="tooltip" [style.left.px]="tooltip.x" [style.top.px]="tooltip.y">
+        {{ tooltip.label }}
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div *ngIf="selectedItem" class="modal-backdrop fade-in">
+    <div class="modal-content-entrainement">
+      <div class="modal-header">
+        <h5 class="modal-title">Détail {{ modalType === 'entrainement' ? "de l'entraînement" : "de l'examen" }}</h5>
+        <button class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Score :</strong> <span [ngClass]="getScoreClass(selectedItem.score)">{{ selectedItem.score }}</span> / 40</p>
+        <p><strong>Date :</strong> {{ selectedItem.date_passage | date:'dd/MM/yyyy HH:mm' }}</p>
+        <p><strong>Durée :</strong> {{ selectedItem.duree }} minutes</p>
+        <p *ngIf="modalType === 'entrainement'"><strong>Thème :</strong> {{ selectedItem.theme }}</p>
+        <p *ngIf="modalType === 'examen'"><strong>Type :</strong> Examen blanc</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
