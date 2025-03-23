@@ -148,9 +148,9 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `users` (`id`, `nom`, `prenom`, `email`, `password`, `role`, `date_naissance`, `adresse`, `ville`, `code_postal`, `npeh`, `etg`, `echec_etg`, `date_inscription`) VALUES
-(3, 'Vandele', 'Marin', 'admin1@gmail.com', 'Password123', 'admin', '2001-03-06', NULL, NULL, NULL, NULL, NULL, 0, '2025-03-22 17:12:58'),
+(3, 'Vandele', 'Marin', 'administrateur1@gmail.com', 'Password123', 'admin', '2001-03-06', NULL, NULL, NULL, NULL, NULL, 0, '2025-03-22 17:12:58'),
 (10, 'Renard', 'Marc', 'moniteur1@gmail.com', 'Password123', 'moniteur', '1985-07-12', NULL, NULL, NULL, NULL, NULL, 0, '2025-03-22 21:25:44'),
-(18, 'Robert', 'Ethan', ' eleve1@gmail.com', 'Password123', 'eleve', '2004-10-02', NULL, NULL, NULL, NULL, NULL, 0, '2025-03-22 21:25:44');
+(18, 'Robert', 'Ethan', 'eleve1@gmail.com', 'Password123', 'eleve', '2004-10-02', NULL, NULL, NULL, NULL, NULL, 0, '2025-03-22 21:25:44');
 
 ALTER TABLE `avis`
   ADD PRIMARY KEY (`id`),
