@@ -1,59 +1,64 @@
-# AppScol
+﻿# Edunote
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
+Edunote est une plateforme conçue pour simplifier la consultation et la gestion des notes pour les étudiants, les professeurs et les administrateurs de l'université Gustave Eiffel sur le site de Meaux.
 
-## Development server
+## Fonctionnalités
 
-To start a local development server, run:
+- **Etudiants**
+  - Consultation des notes
 
-```bash
-ng serve
-```
+- **Professeurs**
+  - Gestion des notes
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Administrateurs**
+  - Gestion des éléments de formations (ressources, professeurs, ...)
+  - Gestion des utilisateurs
 
-## Code scaffolding
+## Contexte
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Edunote a été développé dans le cadre d'une SAE (Situation d'Apprentissage en Entreprise) pour répondre à la problématique suivante : comment simplifier la consultation et la gestion des notes à l'université Gustave Eiffel sur le site de Meaux.
 
-```bash
-ng generate component component-name
-```
+## Equipe de Réalisation
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Marin Vandelet
+  - Etudiant MMI 1ère année
+  - Université Gustave Eiffel, Site De Meaux
+- Malick Thiams
+  - Etudiant MMI 1ère année
+  - Université Gustave Eiffel, Site De Meaux
+- Ruben Pereira
+  - Etudiant MMI 1ère année
+  - Université Gustave Eiffel, Site De Meaux
+- Lucas Wattin
+  - Etudiant MMI 1ère année
+  - Université Gustave Eiffel, Site De Meaux
+- Ewen Mingant
+  - Développeur web
+  - Mention honorable pour son aide sur le smtp
 
-```bash
-ng generate --help
-```
+## Logins
 
-## Building
+- Eleve
+  - sophie.martin@exemple.com
+  - password
 
-To build the project run:
+- Professeur
+  - toryan@exemple.com
+  - password
 
-```bash
-ng build
-```
+- Administrateur
+  - administrateur@exemple.com
+  - password
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+ 
+  ## Liens :
+   - [🗒 GITHUB REPO]()
+   - 🌐 SITES WEB 
+     - [↪ ALWAYSDATA](https://edunote.alwaysdata.net/)
+     - [↪ INFINITYFREE](http://edunote.infinityfreeapp.com/)
+   - [🧰 BASE DE DONNEES](./database.sql)
+   - [🔗 FIGMA](https://www.figma.com/design/22SZXsg8syOBf8QS6dLdI0/Untitled?node-id=10-88)
+   - [📊 TRELLO](https://trello.com/invite/b/JHPzmYz6/ATTId0c9d16aabc315eeba35c7560c13276e746D5492/kanban-template)
+   - [⚡ DIAPO SOUTENANCE](https://www.canva.com/design/DAGHqwgFdqU/rkHCy7L6wgbbSJHJyq2AdQ/view?utm_content=DAGHqwgFdqU&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+   - [🏴 Github](https://github.com/MarinVandelet/Edunote)
