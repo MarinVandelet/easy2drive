@@ -5,7 +5,7 @@ Elle permet aux élèves de suivre leur progression, de réserver des sessions d
 
 ## 🧩 Fonctionnalités
 
-### 👩‍🎓 Élèves
+### Élèves
 - Entraînement au code de la route (tests & examens blancs)
 - Statistiques et moyenne personnalisée
 - Réservation d'examens de code
@@ -13,13 +13,13 @@ Elle permet aux élèves de suivre leur progression, de réserver des sessions d
 - Accès à un agenda des leçons de conduite
 - Possibilité de noter et laisser un avis sur une session
 
-### 🧑‍🏫 Moniteurs
+###  Moniteurs
 - Visualisation des leçons programmées
 - Saisie d’un avis personnalisé après chaque séance de conduite
 - Suivi des examens qu’ils accompagnent (avenir & passés)
 - Modification des avis rédigés précédemment
 
-### 👨‍💼 Administrateurs
+### Administrateurs
 - Gestion des utilisateurs (création, modification, suppression)
 - Modération des avis laissés par les élèves
 
