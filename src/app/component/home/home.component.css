@@ -26,3 +26,25 @@ section {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+.card.avis-card {
+    background-color: #1c1c1c; /* fond foncÃ© */
+    color: white; /* texte clair */
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .card.avis-card .card-text {
+    font-size: 1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  
+  .card.avis-card .text-muted {
+    color: #ccc !important;
+  }
+  
+  .card.avis-card hr {
+    border-color: rgba(255, 255, 255, 0.2);
+  }

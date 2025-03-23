@@ -90,42 +90,38 @@
 
     <!-- Section Avis -->
     <div class="container mt-5">
-        <h3 class="text-center text-white bg-success py-2 rounded">Avis des élèves</h3>
+        <h3 class="text-center text-white bg-primary py-2 rounded">Avis des élèves</h3> <br />
       
-        <div class="row mt-4">
-          <div *ngFor="let avis of avisList" class="col-md-4 mb-4">
-            <div class="card bg-dark text-light text-center shadow h-100 rounded p-3">
-              <div class="card-body d-flex flex-column justify-content-between">
-      
-                <!-- Contenu de l’avis -->
-                <p class="card-text">"{{ avis.contenu }}"</p>
-      
-                <!-- Étoiles -->
-                <div class="text-warning mb-2">
-                  <ng-container *ngFor="let i of [].constructor(avis.nb_etoiles)">
-                    ★
-                  </ng-container>
-                  <ng-container *ngFor="let i of [].constructor(5 - avis.nb_etoiles)">
-                    ☆
-                  </ng-container>
+        <div class="row">
+            <div *ngFor="let avis of avisList.slice(0, 6)" class="col-md-4 mb-4">
+                <div class="card avis-card shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <p class="card-text">"{{ avis.contenu }}"</p>
+        
+                  <div class="mb-2">
+                    <ng-container *ngIf="avis.nb_etoiles">
+                      <span *ngFor="let star of [].constructor(avis.nb_etoiles)" class="text-warning">★</span>
+                      <span *ngFor="let empty of [].constructor(5 - avis.nb_etoiles)" class="text-muted">☆</span>
+                    </ng-container>
+                  </div>
+        
+                  <hr>
+                  <p class="mb-1"><strong>{{ avis.prenom }} {{ avis.nom }}</strong></p>
+                  <p class="text-muted small">{{ avis.date_publication | date:'dd/MM/yyyy à HH:mm' }}</p>
                 </div>
-      
-                <!-- Nom/prénom -->
-                <hr class="text-secondary">
-                <p class="mb-0 fw-light fst-italic">{{ avis.prenom }} {{ avis.nom }}</p>
-      
               </div>
             </div>
           </div>
+        
+          <div class="text-center mt-4" *ngIf="hasMore && avisList.length < 6">
+            <button class="btn btn-outline-primary" (click)="loadAvis()">Voir plus</button>
+          </div>          
+        
+          <div class="text-center text-muted mt-3" *ngIf="!hasMore && avisList.length > 0">
+            <em>Plus d'avis à afficher.</em>
+          </div>
+        
+          <div class="text-center text-muted mt-3" *ngIf="avisList.length === 0">
+            <em>Aucun avis pour le moment.</em>
+          </div>
         </div>
-      
-        <!-- Bouton Voir plus -->
-        <div class="text-center mt-3" *ngIf="hasMore">
-            <button class="btn btn-outline-light" (click)="loadAvis()" [disabled]="isLoading">
-              {{ isLoading ? 'Chargement...' : 'Voir plus' }}
-            </button>
-          </div>
-          <div class="text-center mt-2" *ngIf="isLoading">
-            <span class="spinner-border text-light" role="status"></span>
-          </div>
-      </div>
