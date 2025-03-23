@@ -40,15 +40,15 @@ Elle permet aux élèves de suivre leur progression, de réserver des sessions d
 ## Logins
 
 - Eleve
-  - eleve1@gexemple.com
+  - eleve1@gmail.com
   - Password123
 
 - Moniteur
-  - moniteur1@gexemple.com
+  - moniteur1@gmail.com
   - Password123
 
 - Administrateur
-  - administrateur1@exemple.com
+  - administrateur1@gmail.com
   - password
 
 ## 🛠️ Technologies utilisées
