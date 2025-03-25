@@ -1,0 +1,55 @@
+<div class="container-lecon">
+  <h2 class="main-title">🚗 Agenda des leçons de conduite</h2>
+
+  <div class="week-navigation">
+    <button class="nav-button" (click)="changerSemaine(-1)">« Semaine précédente</button>
+    <span class="current-week">Cours de conduite</span>
+    <button class="nav-button" (click)="changerSemaine(1)">Semaine suivante »</button>
+  </div>
+
+  <table class="agenda">
+    <thead>
+      <tr>
+        <th>Créneaux</th>
+        <th *ngFor="let jour of joursSemaine">{{ jour | date:'EEEE dd/MM' }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let creneau of creneaux">
+        <td class="creneau-label">{{ creneau }}</td>
+        <td *ngFor="let jour of joursSemaine">
+          <div *ngIf="getLecon(jour, creneau) as lecon" class="lecon-block" (click)="ouvrirPopup(lecon)">
+            <div><strong>Moniteur :</strong> {{ lecon.nom_moniteur }}</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- détails -->
+  <div class="popup-overlay" *ngIf="popupVisible" (click)="fermerPopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h3>Détail de la leçon</h3>
+      <p><strong>Moniteur :</strong> {{ leconActive?.nom_moniteur }}</p>
+      <p><strong>Voiture :</strong> {{ leconActive?.voiture }}</p>
+      <p><strong>Date :</strong> {{ leconActive?.date_lecon }}</p>
+      <p><strong>Créneau :</strong> {{ leconActive?.creneau }}</p>
+      <button (click)="fermerPopup()">Fermer</button>
+    </div>
+  </div>
+
+  <!-- lecons passées -->
+  <div class="section-lecons-passees">
+    <h3 class="sub-title">Leçons passées</h3>
+
+    <div *ngIf="leconsPassees.length === 0" class="empty">Aucune leçon passée trouvée.</div>
+
+    <div *ngFor="let lecon of leconsPassees" class="lecon-passee-card">
+      <p><strong>Date :</strong> {{ lecon.date_lecon | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Moniteur :</strong> {{ lecon.nom_moniteur }} {{ lecon.prenom_moniteur }}</p>
+      <p><strong>Créneau :</strong> {{ lecon.creneau }}</p>
+      <p><strong>Voiture :</strong> {{ lecon.voiture }}</p>
+      <p *ngIf="lecon.avis"><strong>Avis :</strong> {{ lecon.avis }}</p>
+    </div>
+  </div>
+</div>

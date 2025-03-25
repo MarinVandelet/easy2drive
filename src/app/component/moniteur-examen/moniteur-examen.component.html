@@ -1,0 +1,63 @@
+<div class="container-entrainement">
+    <h2 class="main-title">🚘 Vos accompagnements aux examens</h2>
+  
+    <!-- Accompagnements programmés -->
+    <section class="bloc-section fade-in" *ngIf="examensAVenir.length > 0">
+      <h3 class="section-title">📅 Vos accompagnements programmés</h3>
+  
+      <div *ngFor="let exam of examensAVenir" class="result-card">
+        <div class="infos">
+          <p><strong>Date :</strong> {{ exam.date_passage | date:'dd/MM/yyyy' }}</p>
+          <p><strong>Centre :</strong> {{ exam.centre }}</p>
+          <p><strong>Créneau :</strong> {{ exam.creneau }}</p>
+          <p><strong>Élève :</strong> {{ exam.prenom }} {{ exam.nom }}</p>
+        </div>
+        <button class="btn btn-outline-info btn-sm" (click)="voirDetails(exam)">Détails</button>
+      </div>
+    </section>
+  
+    <!-- Accompagnements passés -->
+    <section class="bloc-section fade-in" *ngIf="examensPasses.length > 0">
+      <h3 class="section-title">✅ Vos accompagnements passés</h3>
+  
+      <div *ngFor="let exam of examensPasses" class="result-card">
+        <div class="infos">
+          <p><strong>Date :</strong> {{ exam.date_passage | date:'dd/MM/yyyy' }}</p>
+          <p><strong>Centre :</strong> {{ exam.centre }}</p>
+          <p><strong>Créneau :</strong> {{ exam.creneau }}</p>
+          <p><strong>Élève :</strong> {{ exam.prenom }} {{ exam.nom }}</p>
+          <p><strong>Résultat :</strong>
+            <span [style.color]="exam.reussi ? 'green' : 'red'">
+              {{ exam.reussi ? 'Réussi ✅' : 'Échoué ❌' }}
+            </span>
+          </p>
+        </div>
+        <button class="btn btn-outline-info btn-sm" (click)="voirDetails(exam)">Détails</button>
+      </div>
+    </section>
+  
+    <!-- détails -->
+    <div *ngIf="selectedExamen" class="modal-backdrop fade-in">
+      <div class="modal-content-entrainement">
+        <div class="modal-header">
+          <h5 class="modal-title">Détail de l'examen</h5>
+          <button class="btn-close" (click)="fermerModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Date :</strong> {{ selectedExamen.date_passage | date:'dd/MM/yyyy' }}</p>
+          <p><strong>Centre :</strong> {{ selectedExamen.centre }}</p>
+          <p><strong>Créneau :</strong> {{ selectedExamen.creneau }}</p>
+          <p><strong>Élève :</strong> {{ selectedExamen.prenom }} {{ selectedExamen.nom }}</p>
+          <p *ngIf="selectedExamen.reussi !== undefined"><strong>Résultat :</strong>
+            <span [style.color]="selectedExamen.reussi ? 'green' : 'red'">
+              {{ selectedExamen.reussi ? 'Réussi ✅' : 'Échoué ❌' }}
+            </span>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="fermerModal()">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

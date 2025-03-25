@@ -1,0 +1,105 @@
+.container-lecon {
+  padding: 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 1.8rem;
+  background-color: #1976D2;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.week-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.agenda {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.agenda th, .agenda td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+  vertical-align: top;
+  min-width: 120px;
+}
+
+.creneau-label {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.lecon-block {
+  background-color: #e9f7ef;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  font-size: 0.9rem;
+  color: #155724;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.lecon-block:hover {
+  transform: scale(1.03);
+  background-color: #d4edda;
+}
+
+.current-week {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* MODAL */
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+}
+
+/* LEÇONS PASSÉES */
+.section-lecons-passees {
+  margin-top: 3rem;
+}
+
+.sub-title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.lecon-passee-card {
+  background-color: #f1f1f1;
+  border-left: 4px solid #1976D2;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.empty {
+  font-style: italic;
+  color: #888;
+}

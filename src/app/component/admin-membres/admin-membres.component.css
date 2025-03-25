@@ -1,0 +1,34 @@
+/* Apparition douce */
+.fade-in {
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Animation du modal */
+  .slide-in {
+    animation: slideIn .3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Hover doux pour les boutons */
+  .btn-hover {
+    transition: transform 0.2s ease-in-out;
+  }
+  .btn-hover:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Responsive fix */
+  @media (max-width: 576px) {
+    h2 { font-size: 1.4rem; text-align: center; }
+    table th, table td { font-size: 0.85rem; }
+  }
+  

@@ -1,0 +1,127 @@
+    <!-- Bannière -->
+    <div id="carouselExampleCaptions" class="carousel slide fade-in" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="slider1.jpg" class="d-block w-100" alt="First slide">
+                <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center animate__animated animate__fadeInUp">
+                    <h1 class="text-light">Révisez le Code de la route<br>où et quand vous le souhaitez entièrement en ligne</h1><br>
+                    <div>
+                        <a routerLink="/inscription" class="btn btn-light opacity-75">Rejoignez nous</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="slider2.jpg" class="d-block w-100" alt="Second slide">
+                <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center animate__animated animate__fadeInUp">
+                    <h1 class="text-primary">Conduite flexible,<br>avec des moniteurs disponibles à distance</h1><br>
+                    <div>
+                        <a routerLink="/inscription" class="btn btn-primary opacity-75">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+
+<div class="py-5 bg-black text-light fade-in">
+    <!-- Cards -->
+    <section id="activites">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Tout ce qu'il vous faut pour réussir votre permis</h2>
+                <p class="text-white opacity-75">Une formation et un suivi complet et flexible, adaptée à vos besoins.</p>
+                <p class="text-white opacity-50">Notre site vous offre une formation complète et flexible pour réussir votre permis de conduire, en alliant révision du Code de la route en ligne et leçons de conduite à distance avec des moniteurs expérimentés.</p>
+            </div>
+            <div class="row text-center">
+                <!-- Card 1 -->
+                <div class="col-md-4 mb-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="card h-100 bg-dark text-light shadow-sm">
+                        <div class="overflow-hidden" style="height: 50%;">
+                            <img src="codedelaroute.jpg" class="card-img-top w-100 h-100" alt="Formation de Pilote">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Conduite avec moniteur</h5>
+                            <p class="card-text">Des leçons personnalisées avec des moniteurs disponibles à distance.</p>
+                            <a routerLink="/inscription" class="btn btn-primary opacity-50">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-4 mb-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="card h-100 bg-dark text-light shadow-sm">
+                        <div class="overflow-hidden" style="height: 50%;">
+                            <img src="moniteur.jpg" class="card-img-top w-100 h-100" alt="Baptême de l'air">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Conduite avec moniteur</h5>
+                            <p class="card-text">Des leçons personnalisées avec des moniteurs disponibles à distance.</p>
+                            <a routerLink="/inscription" class="btn btn-primary opacity-50">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-md-4 mb-4 animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+                    <div class="card h-100 bg-dark text-light shadow-sm">
+                        <div class="overflow-hidden" style="height: 50%;">
+                            <img src="suivi.jpg" class="card-img-top w-100 h-100" alt="Location d'ULM">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Suivi personnalisé</h5>
+                            <p class="card-text">Recevez des conseils et des évaluations pour progresser rapidement.</p>
+                            <a routerLink="/inscription" class="btn btn-primary opacity-50">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Avis -->
+    <div class="container mt-5">
+        <h3 class="text-center text-white bg-primary py-2 rounded">Avis des élèves</h3> <br />
+      
+        <div class="row">
+            <div *ngFor="let avis of avisList.slice(0, 6)" class="col-md-4 mb-4">
+                <div class="card avis-card shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <p class="card-text">"{{ avis.contenu }}"</p>
+        
+                  <div class="mb-2">
+                    <ng-container *ngIf="avis.nb_etoiles">
+                      <span *ngFor="let star of [].constructor(avis.nb_etoiles)" class="text-warning">★</span>
+                      <span *ngFor="let empty of [].constructor(5 - avis.nb_etoiles)" class="text-muted">☆</span>
+                    </ng-container>
+                  </div>
+        
+                  <hr>
+                  <p class="mb-1"><strong>{{ avis.prenom }} {{ avis.nom }}</strong></p>
+                  <p class="text-muted small">{{ avis.date_publication | date:'dd/MM/yyyy à HH:mm' }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="text-center mt-4" *ngIf="hasMore && avisList.length < 6">
+            <button class="btn btn-outline-primary" (click)="loadAvis()">Voir plus</button>
+          </div>          
+        
+          <div class="text-center text-muted mt-3" *ngIf="!hasMore && avisList.length > 0">
+            <em>Plus d'avis à afficher.</em>
+          </div>
+        
+          <div class="text-center text-muted mt-3" *ngIf="avisList.length === 0">
+            <em>Aucun avis pour le moment.</em>
+          </div>
+        </div>
