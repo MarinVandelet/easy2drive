@@ -63,4 +63,4 @@ Elle permet aux élèves de suivre leur progression, de réserver des sessions d
    - [🗒 GITHUB REPO]()
    - [🧰 BASE DE DONNEES](./database.sql)
    - [🔗 FIGMA](https://www.figma.com/design/CZfGJW8rMbXYGvQk7dlHUb/MAQUETTE?node-id=0-1&p=f&t=ypKCIP12AIBtVcLl-0)
-   - [🏴 Github](https://github.com/MarinVandelet/easy2drive)
+   - [🏴 Backend](./backend/)
